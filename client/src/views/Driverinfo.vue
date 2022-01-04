@@ -7,7 +7,7 @@
     <br />
     <br />
     <input type="text" v-model="busNob" placeholder="輸入欲搜尋的司機ID" />
-    <button v-on:click="getDriverinfo(busNob)">點擊匯入司機資訊</button>
+    <button v-on:click="getDriverinfo(busNob)">點擊匯出指定司機資訊</button>
     <h5 class="black" v-if="businfo.name != null">
       <br />
       司機名稱 : {{ businfo.name }} <br />

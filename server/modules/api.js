@@ -30,7 +30,13 @@ module.exports = {
   async getdrivercontent(req, res) {
     // const driverId = req.params.id;
     const key = rediskey.Driver_content('*');
-    const drivercontent = await cache.keys(key);
+    const allkey = await cache.keys(key);
+    const drivercontent = [];
+    for (let i = 0; i < allkey.length; i++) {
+      let temp = await cache.GET(allkey[i]);
+      drivercontent.push(temp);
+    }
+    // const drivercontent = await cache.GET(allkey[0]);
     res.send(drivercontent);
   },
 };

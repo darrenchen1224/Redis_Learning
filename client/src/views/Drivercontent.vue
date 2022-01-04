@@ -5,12 +5,11 @@
     <button v-on:click="postDrivercontent()">確認</button>
     <br />
     <br />
-    <input type="text" v-model="busNob" placeholder="輸入欲搜尋的司機ID" />
-    <button v-on:click="getDrivercontent(busNob)">點擊匯入司機自我介紹</button>
-    <h5 class="black" v-if="content != null">
-      <br />
-      自我介紹 : {{ content }} <br />
-    </h5>
+    <button v-on:click="getDrivercontent()">點擊匯出所有司機自我介紹</button>
+    <div v-if="content != null">
+      <h5><br />自我介紹 :</h5>
+      <h5 v-for="item in content" :key="item">{{ item }}</h5>
+    </div>
   </div>
 </template>
 
@@ -43,9 +42,9 @@ export default {
       this.drivercontent = null;
     },
 
-    getDrivercontent(busNob) {
+    getDrivercontent() {
       axios
-        .get(`http://localhost:3000/api/getdrivercontent/${busNob}`)
+        .get(`http://localhost:3000/api/getdrivercontent/`)
         .then((res) => {
           this.content = res.data;
         })
